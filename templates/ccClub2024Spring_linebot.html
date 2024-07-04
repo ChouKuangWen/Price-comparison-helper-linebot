@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品查詢</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #f5576c 0%, #f093fb 100%);
+            transform: translateY(-2px);
+        }
+
+        .form-control {
+            border-radius: 25px;
+            padding-left: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">商品查詢</h1>
+        <form id="productForm">
+            <input type="hidden" id="lineUserId">
+            <div class="form-group">
+                <label for="productName">商品名稱</label>
+                <input type="text" class="form-control" id="productName" placeholder="請輸入商品名稱" required>
+            </div>
+            <div class="form-group">
+                <label for="minPrice">最低價</label>
+                <input type="number" class="form-control" id="minPrice" placeholder="請輸入最低價" required>
+            </div>
+            <div class="form-group">
+                <label for="maxPrice">最高價</label>
+                <input type="number" class="form-control" id="maxPrice" placeholder="請輸入最高價" required>
+            </div>
+            <button type="submit" class="btn">提交</button>
+        </form>
+    </div>
+
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function sweetAlert(title, body, icon) {
+            if (!Swal) console.error('缺少 SweetAlert 模組');
+            if (icon && !['success', 'error', 'warning', 'info', 'question'].includes(icon)) icon = 'error';
+            return Swal.fire({
+                title: title,
+                text: body,
+                icon: icon,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
+
+        async function initializeLiff(myLiffId) {
+            try {
+                await liff.init({ liffId: myLiffId });
+                if (!liff.isLoggedIn()) {
+                    alert("請在 LINE 中開啟");
+                } else {
+                    const profile = await liff.getProfile();
+                    document.getElementById('lineUserId').value = profile.userId;
+                }
+            } catch (error) {
+                sweetAlert('LIFF 初始化失敗', error.message, 'error')
+            }
+        }
+
+        async function submitForm(productName, minPrice, maxPrice, lineUserId) {
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product_name: productName,
+                        min_price: minPrice,
+                        max_price: maxPrice,
+                        line_user_id: lineUserId
+                    })
+                });
+
+                const data = await response.json();
+                sweetAlert('表單發送成功', data.message, 'success');
+                // 延遲 2 秒再關閉窗口
+                setTimeout(() => {
+                    if (liff.isInClient()) {
+                        liff.closeWindow();
+                    }
+                }, 2000);
+
+            } catch (error) {
+                sweetAlert('表單發送失敗', error.message, 'error');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeLiff("2005676413-yKODjAxM");
+
+            document.getElementById('productForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const productName = document.getElementById('productName').value;
+                const minPrice = document.getElementById('minPrice').value;
+                const maxPrice = document.getElementById('maxPrice').value;
+                const lineUserId = document.getElementById('lineUserId').value;
+
+                submitForm(productName, minPrice, maxPrice, lineUserId);
+            });
+        });
+    </script>
+</body>
+
+</html>
