@@ -12,15 +12,15 @@ import visualization
 app = Flask(__name__)
 
 # 設定 Channel access token 和 Channel secret
-line_bot_api = LineBotApi("YOUR_LINE_CHANNEL_ACCESS_TOKEN")
-handler = WebhookHandler("YOUR_LINE_CHANNEL_SECRET")
+line_bot_api = LineBotApi(os.getenv("YOUR_LINE_CHANNEL_ACCESS_TOKEN"))
+handler = WebhookHandler(os.getenv("YOUR_LINE_CHANNEL_SECRET"))
 
 # 設定 LIFF ID
-liffid = "YOUR_LIFF_ID"
+liffid = os.getenv("YOUR_LIFF_ID")
 
 # Imgur 設定
-client_id = "YOUR_IMGUR_CLIENT_ID"
-client_secret = "YOUR_IMGUR_CLIENT_SECRET"
+client_id = os.getenv("YOUR_IMGUR_CLIENT_ID")
+client_secret = os.getenv("YOUR_IMGUR_CLIENT_SECRET")
 imgur_client = ImgurClient(client_id, client_secret)
 
 
