@@ -21,7 +21,7 @@ def price_chart(sorted_df, font_path, product, output_path='price_chart.png'):
     
     
     #使用中文字體：要先下載字體檔案，font_path 為字型檔路徑
-    font = FontProperties(fname=YuPearl-Light)
+    font = FontProperties(fname="YuPearl-Light.ttf")
     
     top_10_df = sorted_df.head(10)
     
