@@ -75,5 +75,6 @@ Price-Comparison-Helper-Linebot/
 1. 使用者點選平台快速選單。
 2. 導向各平台對應的優惠券頁面。
 
+![圖1](https://drive.google.com/uc?export=view&id=1_QSuJh5bfLXPpFAi-UBjMu2jIGSepBJ1)
 
 
