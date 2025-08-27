@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 比價小幫手 Price Comparison Helper Linebot
 ---
 
@@ -121,4 +120,5 @@ Imgur:將生成的分析圖表生成網址，回傳至Linebot。
 
 功能三 優惠券資訊:
 透過Linebot圖文選單點選後，會出現數個快速選單，點選快速選單後，進入該平台優惠券連結。
->>>>>>> ff3213eaec99a87af7a150ac22bc15d0a28e056f
+
+
