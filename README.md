@@ -75,6 +75,40 @@ Price-Comparison-Helper-Linebot/
 1. 使用者點選平台快速選單。
 2. 導向各平台對應的優惠券頁面。
 
+---
+##  運作圖
 ![圖1](https://drive.google.com/uc?export=view&id=1_QSuJh5bfLXPpFAi-UBjMu2jIGSepBJ1)
+*圖 1：點選 Linebot 商品查詢圖文選單*
+
+![圖2](https://drive.google.com/uc?export=view&id=1CBqIt9aEkEaJ0SHi5dRFDXKtaAoQeT2g)
+*圖 2：輸入商品名稱與價格範圍*
+
+![圖3](https://drive.google.com/uc?export=view&id=1vAvEY5_5qgPMiEemJRc7CqMv89a5pTyu)
+*圖 3：送出後觸發爬蟲查詢飛比比價資料*
+
+![圖4](https://drive.google.com/uc?export=view&id= 1Il3Ql9tSIfHyTqdc7ivgJjM6dLPErFFm)
+*圖 4：回傳價格最低的三筆商品資訊*
+
+![圖5](https://drive.google.com/uc?export=view&id=1dt3hQxszeatT3KSF6ogxZA8QBYsscpj-)
+*圖 5：點選 Linebot 圖表分析圖文選單*
+
+![圖6](https://drive.google.com/uc?export=view&id=1PytMMrAHNbGujM-1xS3YKYqD8aAXXGLc)
+*圖 6：輸入商品名稱與價格範圍*
+
+![圖7](https://drive.google.com/uc?export=view&id=126yhqP-otzhMluCU-9jZh4gLpCmye3i5)
+*圖 7：回傳前十低價格長條圖*
+
+![圖8](https://drive.google.com/uc?export=view&id=1uq-xFDw4-LLiJoJIPjGN2a9LN_I9k7hE)
+*圖 8：價格長條圖*
+
+![圖9](https://drive.google.com/uc?export=view&id=1yKFg0gbgLUHmqfvsN3hKMX1AoQqmY8Mz)
+*圖 9：點選 Linebot 優惠券圖文選單*
+
+![圖10](https://drive.google.com/uc?export=view&id=13WtBS6puU549MnriwPQPv2ao1-OT_Sty)
+*圖 10：選擇店商平台*
+
+
+=======
+
 
 
